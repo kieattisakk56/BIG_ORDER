@@ -1,0 +1,182 @@
+// .table {
+//   width: 100%;
+
+//   thead {
+//     tr {
+//       th {
+//         padding: 0.75rem;
+//       }
+//     }
+//   }
+
+//   tbody {
+
+//     tr {
+//       border-bottom-width: 1px !important;
+//       border-bottom-style: dashed;
+//       border-bottom-color: #eff2f5 !important;
+//       padding: 0;
+
+//       td {
+//         padding: 0;
+//         border: 0;
+
+//         .column {
+//           height: 100%;
+//           padding: 0.75rem;
+//           background-color: white;
+//           min-height: 60px;
+//           display: grid;
+//           align-items: center;
+//           border: 0;
+
+//           span {
+//             width: fit-content;
+//             border: 0;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// .table-bordered > :not(caption) > * {
+//   border: 0;
+//   border-width: 0;
+// }
+
+// thead,
+// tbody,
+// tfoot,
+// tr,
+// td,
+// th {
+//   border-bottom-width: 1px !important;
+//   border-bottom-style: dashed;
+//   border-bottom-color: #eff2f5 !important;
+// }
+
+.sort-btn {
+  line-height: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  cursor: pointer;
+  margin-left: 8px;
+  align-self: center;
+}
+
+// .table-header-name {
+//   line-height: 1.625;
+//   font-size: 13px;
+//   font-weight: 400;
+//   white-space: nowrap;
+// }
+
+.sort-btn {
+  svg {
+    width: 18px;
+    height: 10px;
+    margin-top: -4px;
+  }
+}
+
+/* width */
+.table-responsive {
+  &::-webkit-scrollbar {
+    height: 6px !important;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    box-shadow: 0 !important;
+    background-color: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #f1f1f1 !important;
+    border: none !important;
+    outline: none !important;
+  }
+}
+
+.pager-size {
+  height: 30px;
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  background: #f2f5f7;
+  /* float: left; */
+  margin-bottom: 0;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+// .cdk-drag-preview {
+//   box-sizing: border-box;
+//   border-radius: 4px;
+//   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+//     0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+// }
+
+// .cdk-drag-placeholder {
+//   opacity: 0;
+// }
+table {
+  th {
+    &:first-child {
+      border-top-left-radius: 0.475rem !important;
+    }
+
+    &:last-child {
+      border-top-right-radius: 0.475rem !important;
+    }
+  }
+
+  tbody {
+    & tr:last-child {
+      & td {
+
+        &:first-child {
+          border-bottom-left-radius: 0.475rem !important;
+        }
+
+        &:last-child {
+          border-bottom-right-radius: 0.475rem !important;
+        }
+      }
+    }
+  }
+}
+
+
+.fadeInLoop10 {
+  animation: fade 0.1s linear;
+  animation-fill-mode: both;
+}
+
+
+// Set delay per List Item
+@for $i from 1 through 20 {
+  .fadeInLoop10:nth-child(#{$i}) {
+    animation-delay: 0.03s * $i;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+td {
+  width: fit-content;
+  max-width: 300px;
+  word-break: break-word;
+}

@@ -1,0 +1,24 @@
+.confirm-panel {
+  position: sticky;
+  bottom: 0;
+  height: 43px;
+  background-color: #FFC107;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  font-size: 16px !important;
+
+  svg {
+    width: 16px;
+    
+  }
+}
+
+
+.btn-ordering {
+  background: #ff9800cf;
+  border: none;
+  font-size: 16px !important;
+  color: #262626;
+  font-weight: bold;
+}

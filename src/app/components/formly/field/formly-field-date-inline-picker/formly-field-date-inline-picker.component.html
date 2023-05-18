@@ -1,0 +1,32 @@
+<div class="form-group">
+  <div class="row">
+    <div *ngIf="!to['noLabel']" class="col-form-label fw-semibold" [ngClass]="to['required'] ? 'required' : ''"
+      [class]="to['labelContainerClass']" [innerHTML]="to['label'] || '&nbsp;'"></div>
+    <div [class]="to['inputContainerClass']">
+      <div style="width: fit-content;">
+        <bs-datepicker-inline [bsConfig]="{containerClass:'theme-default'}" [bsValue]="dateSelected"
+          (bsValueChange)="onValueChange($event)" [dateCustomClasses]="selectedClass">
+
+        </bs-datepicker-inline>
+        <div class="mt-2 text-center">
+          <span class="cursor-pointer">วันนี้</span>
+
+        </div>
+        <div class="my-2  text-center ">
+
+          <span class="cursor-pointer">ล้าง</span>
+        </div>
+      </div>
+
+
+      <div>
+        <div class="form-text" [ngClass]="to['helperText'] ? 'd-block' : ''">
+          {{ to["helperText"] }}
+        </div>
+        <div class="invalid-feedback" [ngClass]="showError ? 'd-block' : ''">
+          <formly-validation-message [field]="field"></formly-validation-message>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

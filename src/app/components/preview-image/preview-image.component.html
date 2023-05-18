@@ -1,0 +1,142 @@
+<div class="image-preview">
+  <div id="image-preview-wrapper" class="position-relative h-100 w-100">
+    <gallery [id]="id" class="h-100 w-100" [thumbTemplate]="thumbTemplate" [itemTemplate]="itemTemplate"></gallery>
+  </div>
+  <div class="position-absolute" style="top: 0; right: 0; z-index: 1">
+    <button type="button" class="btn-close rounded-circle bg-white m-2 p-2" title="Close" (click)="onClose()"></button>
+  </div>
+</div>
+
+<ng-template #thumbTemplate let-type="type">
+  <!-- <span *ngIf="type === 'youtube'" class="item-type"> test </span>
+  <span *ngIf="type === 'video'" class="item-type"> test </span> -->
+</ng-template>
+
+<ng-template #itemTemplate let-index="index" let-type="type" let-data="data" let-currIndex="currIndex">
+  <!-- <span
+    *ngIf="type === 'image' && index === currIndex"
+    [@slideAnimation]
+    class="item-text"
+  >
+    {{ data?.title }}
+  </span> -->
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="image-preview">
+  <div class="position-relative h-100 w-100">
+    <carousel
+      class="d-grid h-100 w-100"
+      [activeSlide]="index"
+      [isAnimated]="true"
+      (activeSlideChange)="change()"
+    >
+      <ng-container *ngFor="let item of images; let i = index">
+        <div
+          *ngIf="item.getAttribute('path')"
+          class="position-absolute"
+          style="bottom: 0; right: 0; z-index: 10000"
+        >
+          <a
+            type="button"
+            class="btn btn-light m-2 p-2 btn-download"
+            title="Download"
+            target="_blank"
+            [href]="item.getAttribute('path')"
+          >
+            Download
+          </a>
+        </div>
+        <slide class="text-center h-100">
+          <video
+            *ngIf="item.getAttribute('type').includes('video')"
+            [poster]="getSafeUrl(item.src)"
+            style="
+              position: absolute;
+              max-width: 70%;
+              max-height: 75% !important;
+              top: 0;
+              bottom: 0;
+              margin: auto;
+              left: 0;
+              right: 0;
+            "
+            controls
+            controlsList="nodownload"
+          >
+            <source [src]="getSafeUrl(item.getAttribute('origin'))" />
+          </video>
+          <audio
+            *ngIf="item.getAttribute('type').includes('audio')"
+            style="
+              position: absolute;
+              width: 60%;
+              top: 0;
+              bottom: 0;
+              margin: auto;
+              left: 0;
+              right: 0;
+            "
+            controls
+            controlsList="nodownload"
+          >
+            <source [src]="getSafeUrl(item.getAttribute('origin'))" />
+          </audio>
+          <embed
+            *ngIf="
+              item.getAttribute('type').includes('application') ||
+              item.getAttribute('type').includes('text')
+            "
+            [type]="item.getAttribute('type')"
+            [src]="getTrustUrl(item.getAttribute('origin'))"
+            style="
+              position: absolute;
+              height: 70%;
+              width: 70%;
+              top: 0;
+              bottom: 0;
+              margin: auto;
+              left: 0;
+              right: 0;
+            "
+          />
+          <img
+            *ngIf="item.getAttribute('type').includes('image')"
+            [src]="getSafeUrl(item.src)"
+            style="
+              position: absolute;
+              max-width: 70%;
+              max-height: 75% !important;
+              top: 0;
+              bottom: 0;
+              margin: auto;
+              left: 0;
+              right: 0;
+            "
+          />
+          <div class="carousel-caption d-none d-md-block">
+            <h6>{{ item.alt }}</h6>
+          </div>
+        </slide>
+      </ng-container>
+    </carousel>
+  </div>
+  <div class="position-absolute" style="top: 0; right: 0">
+    <button
+      type="button"
+      class="btn-close rounded-circle bg-white m-2 p-2"
+      title="Close"
+      (click)="onClose()"
+    ></button>
+  </div>
+</div> -->

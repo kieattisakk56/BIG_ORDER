@@ -1,0 +1,17 @@
+<div class="d-flex align-items-center text-white position-relative">
+  <button class="btn rounded-circle p-0 border-0" type="button" (click)="toggle()">
+    <i class="fa fa-bell-o text-white" aria-hidden="true" style="font-size: 24px"></i>
+  </button>
+  <div class="noti-banner bg-danger rounded-circle text-center cursor-pointer position-absolute" (click)="toggle()">
+    9+
+  </div>
+  <div *ngIf="isOpen" class="card noti-panel position-absolute overflow-hidden text-black">
+    <div class="noti-list overflow-auto">
+      <ul class="list-group border-0">
+        <li *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" class="list-group-item">
+          noti {{ item }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

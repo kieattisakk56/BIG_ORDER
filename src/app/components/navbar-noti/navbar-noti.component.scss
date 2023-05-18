@@ -1,0 +1,22 @@
+.noti-banner {
+  width: 24px;
+  height: 24px;
+  top: 10px;
+  left: 10px;
+  line-height: 24px;
+  font-size: 13px;
+}
+
+.noti-panel {
+  transition: max-height 250ms ease-out !important;
+  top: 48px;
+  right: 0;
+  .noti-list {
+    max-height: 300px;
+    width: 280px;
+  }
+  .list-group-item {
+    border-left: none;
+    border-right: none;
+  }
+}

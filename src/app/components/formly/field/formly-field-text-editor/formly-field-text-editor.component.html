@@ -1,0 +1,44 @@
+<div class="form-group">
+  <div class="row">
+    <div
+      *ngIf="!to['noLabel']"
+      class="col-form-label fw-semibold"
+      [ngClass]="to['required'] ? 'required' : ''"
+      [class]="to['labelContainerClass']"
+      [innerHTML]="to['label'] || '&nbsp;'"
+    ></div>
+    <div [class]="to['inputContainerClass']">
+      <quill-editor
+        *ngIf="!loading.isLoading || loading.request?.method != 'GET'"
+        [formControl]="formControl"
+        [formlyAttributes]="field"
+        [styles]="{ height: to['height'] || '200px' }"
+        [modules]="modules"
+        [readOnly]="to['disabled']"
+      >
+      </quill-editor>
+      
+      <ngx-skeleton-loader
+        *ngIf="
+          loading.isLoading &&
+          loading.isShowLoading &&
+          loading.request?.method == 'GET'
+        "
+        count="1"
+        appearance="line"
+        class="formControl"
+        [theme]="{ height: to['height'] || '198px' }"
+      ></ngx-skeleton-loader>
+      <div>
+        <div class="form-text" [ngClass]="to['helperText'] ? 'd-block' : ''">
+          {{ to["helperText"] }}
+        </div>
+        <div class="invalid-feedback" [ngClass]="showError ? 'd-block' : ''">
+          <formly-validation-message
+            [field]="field"
+          ></formly-validation-message>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

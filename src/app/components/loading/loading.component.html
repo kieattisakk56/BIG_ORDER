@@ -1,0 +1,13 @@
+<div *ngIf="is_load" class="position-fixed w-100 h-100" style="
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000000;
+    background-color: #080808ee;
+  " ngClass="{{ is_load ? 'fade-out' : '' }}">
+  <div class="lds-default">
+    <ng-lottie [options]="options" width="100%" height="120px" containerClass="m-auto" class="m-auto">
+    </ng-lottie>
+  </div>
+</div>

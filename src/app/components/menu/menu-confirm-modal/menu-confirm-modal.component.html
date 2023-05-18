@@ -1,0 +1,28 @@
+<div class="titel-ordering p-3">
+  รายการทั้งหมด
+</div>
+<ul class="order px-3">
+  <li class="py-3">
+    <div class="w-75">
+      <b>รายการ</b>
+    </div>
+    <div class="w-25 text-end">
+      <b>จำนวน</b>
+    </div>
+  </li>
+  <li *ngFor="let item of model$ | async as list; else loading" class="py-3">
+    <div class=" w-75">
+      {{item.menu_name}}
+    </div>
+    <div class="w-25 text-end">
+      {{item.value}}
+    </div>
+
+  </li>
+  <div *ngIf="( model$ | async)?.length === 0" class="text-center py-3">ไม่พบรายการ</div>
+
+</ul>
+<div class="text-center">
+  <button class="btn btn-cancel mx-1" (click)="onCancel()">ยกเลิก</button>
+  <button class="btn btn-ordering mx-1" (click)="onSubmit()">ยืนยัน</button>
+</div>

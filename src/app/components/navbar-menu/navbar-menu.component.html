@@ -1,0 +1,30 @@
+<div class="overflow-hidden menu-container" [ngClass]="class" [style]="style">
+  <ul class="p-0" [style]="'text-indent: '+ 16 * lvl +'px'">
+    <li *ngFor="let menu of menues; let i = index" routerLinkActive="active" [class.menuOpen]="menu.showSubmenu"
+      [class.active]="!menu.showSubmenu && menu.active && !menu.href">
+      <ng-container *ngIf="!menu.hide">
+        <a *ngIf="menu.submenu" (tapClick)="showSubmenu(menu)" style="padding: 10px 8px 10px 0px"
+          class="cursor-pointer d-flex align-items-center ps-3 text-white">
+          <img *ngIf="menu.imageUrl" class="icon-menu" [src]="menu.imageUrl" />
+          <i *ngIf="menu.icon" class="icon-menu" [ngClass]="menu.icon"></i>
+
+          <p class="ms-2 text-white" [innerHTML]="menu.name | highlight: search">{{ menu.name }} </p>
+
+          <i class="fa ms-auto text-center" style="text-indent: 0" routerLinkActive="fa-angle-down" [ngClass]="
+              menu.showSubmenu ? 'fa-angle-right rotate' : 'fa-angle-right '
+            "></i>
+        </a>
+
+        <a *ngIf="!menu.submenu" [routerLink]="menu.href" routerLinkActive="active" style="padding: 10px 0px 10px 0px"
+          class="cursor-pointer d-flex align-items-center ps-3 text-white" (click)="click(menu)">
+          <img *ngIf="menu.imageUrl" class="icon-menu" [src]="menu.imageUrl" />
+          <i *ngIf="menu.icon" class="icon-menu" [ngClass]="menu.icon"></i>
+
+          <p class="ms-2 text-white" [innerHTML]="menu.name | highlight: search">{{ menu.name }}</p>
+        </a>
+        <app-navbar-menu *ngIf="menu.submenu && menu.showSubmenu" [menues]="menu.submenu" [style]="'text-indent: 32px'"
+          [isShow]="menu.showSubmenu" [search]="search" (onClickMenu)="showSubmenu($event)" [lvl]="lvl + 1"></app-navbar-menu>
+      </ng-container>
+    </li>
+  </ul>
+</div>

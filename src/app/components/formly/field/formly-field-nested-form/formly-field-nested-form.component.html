@@ -1,0 +1,18 @@
+<!-- <div *ngIf="field.fieldArray"> -->
+<div *ngFor="let item of field.fieldGroup; let index = index; let last = last" [hidden]="model.length == 0">
+  <div class="d-flex align-content-center" *ngIf="!item.model?.is_delete">
+    <div class="w-100" >
+      <formly-field [field]="item"> </formly-field>
+    </div>
+  </div>
+</div>
+<div *ngIf="model.length == 0 || is_delete" class="text-center">
+  <p>ไม่พบข้อมูล</p>
+</div>
+<!-- </div> -->
+
+<div class="text-center mt-3" *ngIf="!field.templateOptions?.disabled">
+  <button type="button" class="btn btn-primary w-100" (click)="addData()">
+    {{ label }}
+  </button>
+</div>

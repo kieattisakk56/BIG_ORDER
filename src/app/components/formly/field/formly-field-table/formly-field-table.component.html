@@ -1,0 +1,5 @@
+<app-datatable [config]="to['config']" (ChangePage)="change($event)" 
+  [selectable]="to['selectable'] ?? false"
+  [selectClass]="to['selectClass'] ?? ''"
+  (onSelect)="onSelect($event)">
+</app-datatable>

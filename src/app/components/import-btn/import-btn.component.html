@@ -1,0 +1,8 @@
+<input
+  type="file"
+  [accept]="accept"
+  [id]="id"
+  class="d-none"
+  (change)="onChange($event)"
+/>
+<label [for]="id" [class]="className" [innerHTML]="html"> </label>

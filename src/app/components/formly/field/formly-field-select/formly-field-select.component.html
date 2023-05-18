@@ -1,0 +1,61 @@
+<div class="form-group">
+  <div class="row">
+    <div class="d-flex">
+      <div *ngIf="!to['noLabel']" class="col-form-label fw-semibold w-auto" [ngClass]="to['required'] ? 'required' : ''"
+        [class]="to['labelContainerClass']" [innerHTML]="to['label']  || '&nbsp;'">
+      </div>
+      <span *ngIf="to['remark']" class="col-form-label fw-semibold ms-2" style="color: red;">({{to['remark']}})</span>
+    </div>
+
+    <div [class]="to['inputContainerClass']">
+      <ng-select *ngIf="!loading.isLoading || loading.request?.method != 'GET'" bindLabel="name" bindValue="id"
+        [placeholder]="to['placeholder'] || 'กรุณาระบุมากกว่า 3 ตัวอักษร'" [multiple]="to['multiple'] || false"
+        [clearable]="to['clearable']" (change)="onChange($event)" (keyup)="this.searchUpdate.next($event)"
+        [formControl]="formControl" [formlyAttributes]="field" [class]="to['class']"
+        [addTag]="to['addTag'] ? addOptions : false" [addTagText]="to['addTagText']"
+        [ngClass]="to['showList'] ? 'remove-list' : ''"
+        [searchable]="to['searchable'] ?? true"
+        (open)="onSelectOpen()"
+        >
+        <ng-option *ngIf="(to['placeholder'] || 'กรุณาระบุมากกว่า 3 ตัวอักษร' ) && ( to['searchable'] ?? true)" value="" disabled>{{
+          to["placeholder"] || 'กรุณาระบุมากกว่า 3 ตัวอักษร'
+        }}</ng-option>
+        <ng-option *ngFor="let item of data" [value]="item.id">
+          <img *ngIf="item.imageUrl" class="rounded-circle me-3" height="24" width="24" [src]="item.imageUrl"
+            onerror="this.src='assets/images/placeholder.jpg'" selected="true" />{{ item.name }}
+        </ng-option>
+      </ng-select>
+      <div class="d-flex mt-2" *ngIf="to['showList']">
+        <div class="d-flex border align-items-center me-2" *ngFor="let item of selectedItem; let i = index"
+          style="border-radius: 32px">
+          <img *ngIf="item.imageUrl" [src]="item.imageUrl" class="rounded-circle m-1" width="34" height="34" />
+          <div class="mx-1" [ngClass]="item.imageUrl ? '' : 'ms-4'">
+            <div>
+              {{ item.name }}
+            </div>
+            <div class="text-muted">
+              {{ item.description }}
+            </div>
+          </div>
+          <button class="btn btn-danger rounded-circle m-1" (click)="remove(item)">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <ngx-skeleton-loader *ngIf="
+          loading.isLoading &&
+          loading.isShowLoading &&
+          loading.request?.method == 'GET'
+        " count="1" appearance="line" class="formControl" [theme]="{ height: '31px' }"></ngx-skeleton-loader>
+      <div>
+        <div class="form-text" [ngClass]="to['helperText'] ? 'd-block' : ''">
+          {{ to["helperText"] }}
+        </div>
+        <div class="invalid-feedback" [ngClass]="showError ? 'd-block' : ''">
+          <formly-validation-message [field]="field"></formly-validation-message>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

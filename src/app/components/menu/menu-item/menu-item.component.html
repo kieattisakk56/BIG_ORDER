@@ -1,0 +1,32 @@
+<div inViewport id="menu_{{menu.id}}" (inViewportAction)="onIntersection($event)"
+  [style.height.px]="element?.offsetHeight" [inViewportOptions]="{ partial: true, threshold: [0, 1] }">
+  <div class="warper--menus mb-3 p-3" [ngClass]="menu.value > 0 ?'selected':''" id="menu_content_{{menu.id}}">
+
+    <div class="menu-content">
+      <div class="menu-image me-3">
+        <img class="w-100" style="object-fit: fill;" [src]="menu.menu_image_url" alt="" srcset="">
+      </div>
+      <div class="menu-name">
+        <span><b>{{menu.menu_name}}</b></span>
+        <p class="menu-discription mt-1">{{menu.menu_detail}}</p>
+      </div>
+    </div>
+    <div class="menu-price">
+      <label class="" *ngIf="menu.menu_price"> {{menu.menu_price | number}} บาท</label>
+      <div class="d-flex justify-content-end btn-action">
+        <div class=" minus" (click)="onMinus(menu)">
+          -
+        </div>
+        <div class="value">
+          {{menu.value}}
+        </div>
+        <div class="plus" (click)="onAdd(menu)">
+          +
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>

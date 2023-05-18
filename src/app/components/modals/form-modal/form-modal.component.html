@@ -1,0 +1,42 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(model)" autocomplete="off">
+  <div class="modal-header" [class]="item.templateOptions.headerClass" *ngIf="item.templateOptions.showHeader">
+    <h5 class="modal-title w-100" [innerHTML]="item.templateOptions.label"></h5>
+    <button type="button" class="btn-close" style="align-self: baseline" (click)="close()"
+      *ngIf="item.templateOptions.showCloseBtn != false"></button>
+  </div>
+  <div *ngIf="model" class="modal-body">
+    <formly-form [form]="form" [fields]="fields" [model]="model" [options]="options"
+      (modelChange)="modelChange($event)"></formly-form>
+  </div>
+  <div class="card-footer bg-transparent p-0 overflow-hidden rounded-bottom-right rounded-bottom-left border-top" *ngIf="
+      item.templateOptions.showSubmitBtn != false ||
+      item.templateOptions.showCancelBtn != false
+    ">
+    <div class="row m-0">
+      <div class="col p-0" style="border-right: 1px solid rgba(0, 0, 0, 0.175)" (click)="close()"
+        *ngIf="item.templateOptions.showCancelBtn != false">
+        <button title="{{item.templateOptions.showSubmitBtn ? 'ยกเลิก' : 'ปิด'}}" type="button" class="btn w-100 h-100 btn-outline-danger border-0 py-2">
+          <i class="fa fa-times" aria-hidden="true"></i>
+          {{item.templateOptions.showSubmitBtn ? 'ยกเลิก' : 'ปิด'}}
+        </button>
+
+      </div>
+      <div class="col p-0" *ngIf="item.templateOptions.showSubmitBtn != false">
+        <button type="submit" title="บันทึก" class="btn w-100 h-100 btn-outline-success border-0 py-2">
+          <i class="fa fa-check-square" aria-hidden="true"></i> {{ item.templateOptions?.textSubmitBtn ? item.templateOptions.textSubmitBtn : 'บันทึก' }} 
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div style="padding: 1rem;" class="pt-0 pb-5" *ngIf="item.templateOptions?.customTemplate">
+  <h5>ค่าที่เปลี่ยนแปลง</h5>
+
+  <div class="row">
+    <div class="col-12 overflow-auto" [innerHTML]="item.templateOptions?.customTemplate">
+
+    </div>
+  </div>
+
+</div>

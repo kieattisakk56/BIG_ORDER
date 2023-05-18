@@ -1,0 +1,69 @@
+<!-- <div class="modal-header">
+  <h5 class="modal-title">Crop image</h5>
+  <button type="button" class="btn-close" (click)="close()"></button>
+</div> -->
+<div
+  class="modal-body p-0"
+  style="border-radius: 0.625rem !important; overflow: hidden"
+>
+  <div *ngIf="isGoogleLoaded">
+    <google-map
+      #map
+      height="80vh"
+      width="100%"
+      [zoom]="zoom"
+      [center]="center"
+      [options]="options"
+      (mapClick)="mapClick($event)"
+    >
+      <map-marker
+        *ngFor="let marker of markers"
+        [title]="marker.title || ''"
+        [position]="marker.position || center"
+        [label]="marker.label || ''"
+        [clickable]="marker.clickable || true"
+        [options]="marker.options || {}"
+        [icon]="marker.icon || ''"
+        [visible]="marker.visible != null ? marker.visible : true"
+        (mapClick)="markerClick($event)"
+        (mapDrag)="markerDrag($event)"
+        (mapDragend)="markerDragEnd($event)"
+        (mapDragstart)="markerDragStart($event)"
+      >
+      </map-marker>
+    </google-map>
+  </div>
+  <!-- <div class="invalid-feedback" [ngClass]="notifyText ? 'd-block' : ''">
+    {{ notifyText }}
+  </div> -->
+  <div class="text-right p-4">
+    <button
+      style="margin-right: 0.5rem"
+      type="button"
+      class="btn btn-sm btn-light"
+      data-bs-dismiss="modal"
+      (click)="close()"
+    >
+      Close
+    </button>
+    <button
+      type="button"
+      class="btn btn-sm btn-primary"
+      [disabled]="value.length == 0"
+      data-bs-dismiss="modal"
+      (click)="save()"
+    >
+      Confirm
+    </button>
+  </div>
+</div>
+<div class="d-none">
+  <input
+    type="text"
+    class="my-search-box form-control w-50 mt-4"
+    (keydown.enter)="$event.preventDefault()"
+    placeholder="Search Location"
+    type="text"
+    #search
+  />
+</div>

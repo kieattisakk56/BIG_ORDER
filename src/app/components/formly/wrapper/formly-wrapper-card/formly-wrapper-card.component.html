@@ -1,0 +1,16 @@
+<div class="card" [ngClass]="to['class']" [style]="to['style']">
+  <div class="card-header" *ngIf="to['label']">
+    <h3 class="card-title">
+      <span
+        class="card-label"
+        style="font-weight: bold"
+        [innerHTML]="to['label']"
+      >
+      </span>
+    </h3>
+    <div class="card-toolbar"></div>
+  </div>
+  <div class="card-body">
+    <ng-container #fieldComponent></ng-container>
+  </div>
+</div>

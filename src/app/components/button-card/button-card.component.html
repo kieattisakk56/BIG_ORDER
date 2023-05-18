@@ -1,0 +1,12 @@
+<button
+  type="button"
+  class="btn-light card card-dashed flex-center min-w-175px my-3 p-6 w-100"
+  [ngClass]="active ? 'border-' + color : ''"
+>
+  <span class="fs-4 fw-semibold pb-1 px-2" [ngClass]="'text-' + color">{{
+    title
+  }}</span>
+  <span class="fs-2 fw-bold d-flex justify-content-center">
+    <span [countUp]="value"></span></span
+  >
+</button>

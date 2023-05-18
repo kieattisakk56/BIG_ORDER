@@ -1,0 +1,58 @@
+<div class="form-group">
+  <div class="row">
+    <div
+      *ngIf="!to['noLabel']"
+      class="col-form-label fw-semibold"
+      [ngClass]="to['required'] ? 'required' : ''"
+      [class]="to['labelContainerClass']"
+      [innerHTML]="to['label'] || '&nbsp;'"
+    ></div>
+    <div [class]="to['inputContainerClass']" [id]="uid">
+      <input
+        *ngIf="!loading.isLoading || loading.request?.method != 'GET'"
+        type="text"
+        class="form-control"
+        [class]="to['class']"
+        style="cursor: pointer"
+        [style.background]="formControl.value"
+        [style.color]="'#ffffff00'"
+        [formControl]="formControl"
+        [formlyAttributes]="field"
+        readonly
+        (click)="showPicker()"
+      />
+      <ngx-skeleton-loader
+        *ngIf="
+          loading.isLoading &&
+          loading.isShowLoading &&
+          loading.request?.method == 'GET'
+        "
+        count="1"
+        appearance="line"
+        class="formControl"
+        [theme]="{ height: '33px' }"
+      ></ngx-skeleton-loader>
+      <div
+        class="position-absolute"
+        [ngClass]="show ? 'd-block' : 'd-none'"
+        [style.animation]="'fadein 0.1s'"
+        style="width: 240px; z-index: 100"
+      >
+        <color-sketch
+          [color]="formControl.value"
+          (onChange)="changeComplete($event)"
+        ></color-sketch>
+      </div>
+      <div>
+        <div class="form-text" [ngClass]="to['helperText'] ? 'd-block' : ''">
+          {{ to["helperText"] }}
+        </div>
+        <div class="invalid-feedback" [ngClass]="showError ? 'd-block' : ''">
+          <formly-validation-message
+            [field]="field"
+          ></formly-validation-message>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

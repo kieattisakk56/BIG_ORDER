@@ -1,0 +1,22 @@
+::ng-deep .bs-datepicker-body table td span.custom-selected-date,
+::ng-deep .bs-datepicker-body table td span.custom-selected-date.selected {
+  background-color: #0d6efd !important;
+  color: white !important;
+}
+
+::ng-deep .bs-datepicker-body table td span.selected {
+  background-color: transparent !important;
+  color: #54708b !important;
+}
+
+::ng-deep .bs-datepicker-body table.days span.in-range:before {
+  background-color: transparent !important;
+}
+
+.theme-default {
+  box-shadow: none !important;
+}
+
+.bs-datepicker-head {
+  background-color: #8bc9de !important;
+}

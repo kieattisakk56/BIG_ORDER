@@ -1,0 +1,21 @@
+<div class="form-group">
+  <div class="row">
+    <!-- <div
+      class="col-form-label fw-semibold"
+      [ngClass]="to['required'] ? 'required' : ''"
+      [class]="to['labelContainerClass']"
+    >
+      <pre>{{ to["label"] }}</pre>
+    </div> -->
+    <div [class]="to['inputContainerClass']">
+      <button
+        type="button"
+        class="btn btn-primary"
+        [class]="to['class']"
+        (click)="openMap()"
+      >
+        Open Map
+      </button>
+    </div>
+  </div>
+</div>

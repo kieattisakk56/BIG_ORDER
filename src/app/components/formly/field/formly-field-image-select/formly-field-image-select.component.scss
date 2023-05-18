@@ -1,0 +1,18 @@
+.cardBtn {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.2s;
+  filter: brightness(0.5);
+  &:hover {
+    filter: brightness(1);
+    scale: 1.03;
+  }
+  &.selected {
+    filter: brightness(1);
+    scale: 1.03;
+    &:hover {
+        scale: 1.06;
+      }
+  }
+}

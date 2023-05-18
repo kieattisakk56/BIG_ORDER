@@ -1,0 +1,24 @@
+
+<div class="accordion-item mb-5">
+  <h2 class="accordion-header" [id]="uuid">
+    <button
+      class="accordion-button "
+      type="button"
+      data-bs-toggle="collapse"
+      [attr.data-bs-target]="'#' + uid"
+      aria-expanded="true"
+      [attr.aria-controls]="uid"
+    >
+      {{ to.label }}
+    </button>
+  </h2>
+  <div
+    [id]="uid"
+    class="accordion-collapse collapse show"
+    [attr.aria-labelledby]="uuid"
+  >
+    <div class="accordion-body">
+      <ng-container #fieldComponent></ng-container>
+    </div>
+  </div>
+</div>

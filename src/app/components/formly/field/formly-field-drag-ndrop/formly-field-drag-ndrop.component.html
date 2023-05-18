@@ -1,0 +1,156 @@
+<div class="form-group">
+  <div class="row">
+    <div
+      *ngIf="!to['noLabel']"
+      class="col-form-label fw-semibold d-flex"
+      [class]="to['labelContainerClass']"
+    >
+      <div
+        [ngClass]="to['required'] ? 'required' : ''"
+        [innerHTML]="to['label'] || '&nbsp;'"
+      ></div>
+      <div class="ms-5">
+        <label class="form-check form-check-inline form-check-solid">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            [id]="guid"
+            (change)="checkboxCheck()"
+            [indeterminate]="indeterminated"
+            [checked]="checked"
+            [disabled]="to['disabled']"
+          />
+          <label class="fw-semibold ps-2 m-0" [for]="guid">เลือกทั้งหมด</label>
+        </label>
+      </div>
+    </div>
+    <div [class]="to['inputContainerClass']">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="ค้นหา"
+            [(ngModel)]="optsSearch"
+          />
+          <div class="card overflow-hidden" style="height: 300px">
+            <div
+              class="card-header btn btn-light"
+              (click)="move('opts')"
+              [class]="to['headerClass']"
+              style="
+                border-bottom: var(--bs-border-width) var(--bs-border-style)
+                  var(--bs-border-color) !important;
+              "
+            >
+              <div
+                [innerHTML]="displayHtml(to['optionLabel'])"
+                style="pointer-events: none"
+              ></div>
+            </div>
+            <div class="card-body p-0 overflow-auto">
+              <ul
+                class="list-group border-0 h-100"
+                cdkDropList
+                #optsList="cdkDropList"
+                [cdkDropListData]="opts"
+                [cdkDropListConnectedTo]="[selectedList]"
+                (cdkDropListDropped)="drop($event)"
+              >
+                <ng-container *ngFor="let item of opts">
+                  <li
+                    *ngIf="item.name.includes(optsSearch)"
+                    cdkDrag
+                    [cdkDragDisabled]="to['disabled'] || !draggable"
+                    class="list-group-item border-0 cursor-pointer"
+                    [ngClass]="
+                      clickedList.selectedOpts.includes(item)
+                        ? 'drag-selected'
+                        : ''
+                    "
+                    (cdkDragStarted)="onStartDrag(item)"
+                    (click)="selectItem(item, 'opts')"
+                  >
+                    {{ item.name }}
+                    <div *cdkDragPreview class="card py-2 px-3 border">
+                      <div *ngFor="let item of movingItems">
+                        {{ item.name }}
+                      </div>
+                    </div>
+                  </li>
+                </ng-container>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <input
+            type="text"
+            class="form-control mb-2"
+            placeholder="ค้นหา"
+            [(ngModel)]="selectedSearch"
+          />
+          <div class="card overflow-hidden" style="height: 300px">
+            <div
+              class="card-header btn btn-light"
+              (click)="move('items')"
+              [class]="to['headerClass']"
+              style="
+                border-bottom: var(--bs-border-width) var(--bs-border-style)
+                  var(--bs-border-color) !important;
+              "
+            >
+              <div
+                [innerHTML]="displayHtml(to['selectedLabel'])"
+                style="pointer-events: none"
+              ></div>
+            </div>
+            <div class="card-body p-0 overflow-auto">
+              <ul
+                class="list-group border-0 h-100"
+                cdkDropList
+                #selectedList="cdkDropList"
+                [cdkDropListData]="selectedItem"
+                [cdkDropListConnectedTo]="[optsList]"
+                (cdkDropListDropped)="drop($event)"
+              >
+                <ng-container *ngFor="let item of selectedItem">
+                  <li
+                    *ngIf="item.name.includes(selectedSearch)"
+                    cdkDrag
+                    [cdkDragDisabled]="to['disabled'] || !draggable"
+                    class="list-group-item border-0 cursor-pointer"
+                    [ngClass]="
+                      clickedList.selectedItems.includes(item)
+                        ? 'drag-selected'
+                        : ''
+                    "
+                    (cdkDragStarted)="onStartDrag($event)"
+                    (click)="selectItem(item, 'items')"
+                  >
+                    {{ item.name }}
+                    <div *cdkDragPreview class="card py-2 px-3 border">
+                      <div *ngFor="let item of movingItems">
+                        {{ item.name }}
+                      </div>
+                    </div>
+                  </li>
+                </ng-container>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="form-text" [ngClass]="to['helperText'] ? 'd-block' : ''">
+          {{ to["helperText"] }}
+        </div>
+        <div class="invalid-feedback" [ngClass]="showError ? 'd-block' : ''">
+          <formly-validation-message
+            [field]="field"
+          ></formly-validation-message>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

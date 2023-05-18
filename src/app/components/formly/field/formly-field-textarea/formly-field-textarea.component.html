@@ -1,0 +1,46 @@
+<div class="form-group">
+  <div class="row">
+    <div
+      *ngIf="!to['noLabel']"
+      class="col-form-label fw-semibold"
+      [ngClass]="to['required'] ? 'required' : ''"
+      [class]="to['labelContainerClass']"
+      [innerHTML]="to['label'] || '&nbsp;'"
+    ></div>
+    <div [class]="to['inputContainerClass']">
+      <textarea
+        *ngIf="!loading.isLoading || loading.request?.method != 'GET'"
+        [class]="'form-control form-control-solid ' + to['class']"
+        [rows]="to['rows'] || 3"
+        [formControl]="formControl"
+        [formlyAttributes]="field"
+        [ngClass]="showError ? 'is-invalid' : ''"
+        [maxlength]="to['maxlength']"
+        [minlength]="to['minlength']"
+       
+      ></textarea>
+      <small *ngIf="to['maxlength'] && formControl" class="my-2 float-end">{{formControl.value?.length}} / {{to['maxlength']}}</small>
+      <ngx-skeleton-loader
+        *ngIf="
+          loading.isLoading &&
+          loading.isShowLoading &&
+          loading.request?.method == 'GET'
+        "
+        count="1"
+        appearance="line"
+        class="formControl"
+        [theme]="{ height: to['rows'] ? to['rows'] * 33 + 'px' : '99px' }"
+      ></ngx-skeleton-loader>
+      <div>
+        <div class="form-text" [ngClass]="to['helperText'] ? 'd-block' : ''">
+          {{ to["helperText"] }}
+        </div>
+        <div class="invalid-feedback" [ngClass]="showError ? 'd-block' : ''">
+          <formly-validation-message
+            [field]="field"
+          ></formly-validation-message> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

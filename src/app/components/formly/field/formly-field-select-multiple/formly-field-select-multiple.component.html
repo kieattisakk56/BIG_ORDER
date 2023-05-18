@@ -1,0 +1,73 @@
+<div class="form-group">
+  <div class="row">
+    <div class="d-flex">
+      <div *ngIf="!to['noLabel']" class="col-form-label fw-semibold w-auto" [ngClass]="to['required'] ? 'required' : ''"
+        [class]="to['labelContainerClass']" [innerHTML]="to['label']  || '&nbsp;'">
+      </div>
+      <span *ngIf="to['remark']" class="col-form-label fw-semibold ms-2" style="color: red;">({{to['remark']}})</span>
+    </div>
+
+    <div [class]="to['inputContainerClass']">
+
+      <ng-select #ngSelectComponent *ngIf="!loading.isLoading || loading.request?.method != 'GET'"
+        [multiple]="to['multiple'] || false" [clearable]="to['clearable']" (keyup)="this.searchUpdate.next($event)"
+        [formControl]="formControl" [formlyAttributes]="field" [class]="to['class']"
+        [ngClass]="to['showList'] ? 'remove-list' : ''" 
+        [searchable]="to['searchable'] ?? true" [loading]="onsearch"
+        (change)="onChange($event)"
+        [(ngModel)]="selectedItems"
+        >
+
+
+        <ng-option *ngIf="(to['placeholder'] || 'กรุณาระบุมากกว่า 3 ตัวอักษร' ) && ( to['searchable'] ?? true)" value=""
+          disabled>{{
+            to["placeholder"] || 'กรุณาระบุมากกว่า 3 ตัวอักษร'
+          }}
+        </ng-option>
+
+        <ng-option *ngFor="let item of items" [value]="item" >
+          <img *ngIf="item.imageUrl" class="rounded-circle me-3" height="24" width="24" [src]="item.imageUrl"
+            onerror="this.src='./assets/images/placeholder.jpg'" selected="true" />
+          {{ item.name }}
+        </ng-option>
+
+      </ng-select>
+
+      <div class="row mt-2" *ngIf="to['showList']">
+        <div class="col-3 d-flex  me-2 px-1 py-1  border" *ngFor="let item of previewitems; let i = index"
+          style="border-radius: 32px;justify-content: space-between;">
+
+          <div class="mx-1 d-flex align-items-center" [ngClass]="item.imageUrl ? '' : 'ms-4'">
+            <img *ngIf="item.imageUrl" [src]="item.imageUrl" class="rounded-circle m-1 me-2" width="48" height="48"
+              onerror="this.src='./assets/images/placeholder.jpg'" />
+            <div class="ms-1">
+              <div>
+                {{ item.name }}
+              </div>
+              <div class="text-muted">
+                {{ item.detail }}
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-danger rounded-circle m-1 ms-3 btn--remove" (click)="onRemove(item)">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <ngx-skeleton-loader *ngIf="
+            loading.isLoading &&
+            loading.isShowLoading &&
+            loading.request?.method == 'GET'
+          " count="1" appearance="line" class="formControl" [theme]="{ height: '31px' }"></ngx-skeleton-loader>
+      <div>
+        <div class="form-text" [ngClass]="to['helperText'] ? 'd-block' : ''">
+          {{ to["helperText"] }}
+        </div>
+        <div class="invalid-feedback" [ngClass]="showError ? 'd-block' : ''">
+          <formly-validation-message [field]="field"></formly-validation-message>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

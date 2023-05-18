@@ -1,0 +1,55 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(model)" autocomplete="off">
+  <div class="form-accordion">
+    <accordion [isAnimated]="true">
+      <accordion-group [isOpen]="isOpen">
+
+        <div
+          class="d-flex align-items-center justify-content-space-between"
+          accordion-heading
+          (click)="$event.stopPropagation()"
+        >
+          <h4 class="card-title m-0 fw-bold">{{ title }}</h4>
+          <div>
+            <button
+              type="button"
+              class="btn btn-secondary ms-2"
+              *ngIf="isSearchable"
+              (click)="toggle()"
+            >
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+        <ng-container *ngIf="isSearchable">
+          <div class="card-body">
+            <formly-form
+              [form]="form"
+              [fields]="fields"
+              [model]="model"
+              [options]="options"
+            ></formly-form>
+          </div>
+          <div class="card-footer bg-transparent border-0">
+            <div class="text-end">
+              <button
+                title="Clear"
+                type="button"
+                class="btn btn-outline-secondary"
+                (click)="discard()"
+              >
+                <i class="fa fa-filter" aria-hidden="true"></i> ล้างคำค้นหา
+              </button>
+              <button
+                title="Search"
+                type="submit"
+                class="ms-2 btn btn-info text-white"
+              >
+                <i class="fa fa-search" aria-hidden="true"></i> ค้นหา
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </accordion-group>
+    </accordion>
+  </div>
+</form>

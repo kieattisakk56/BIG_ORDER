@@ -1,0 +1,69 @@
+.smartphone {
+  background: #2e2e47;
+  position: relative;
+  width: 344px;
+  height: 640px;
+  margin: auto;
+  border: 16px #2e2e47 solid;
+  border-top-width: 60px;
+  border-bottom-width: 60px;
+  border-radius: 36px;
+  overflow: hidden;
+  .content {
+    border-radius: 8px;
+    overflow: auto;
+    position: relative;
+    background: #2e2e47;
+    width: 100%;
+    height: 100%;
+    &::-webkit-scrollbar {
+      width: 1px !important;
+    }
+
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: darkgrey !important;
+      outline: 1px solid slategrey !important;
+    }
+    // padding-bottom: 16px;
+  }
+}
+
+/* The horizontal line on the top of the device */
+.smartphone:before {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 5px;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #333;
+  border-radius: 10px;
+}
+
+/* The circle on the bottom of the device */
+.smartphone:after {
+  content: "";
+  display: block;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  left: 50%;
+  bottom: -65px;
+  transform: translate(-50%, -50%);
+  background: #333;
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: 1366px) {
+  // .smartphone {
+  //   // width: 281px;
+  //   // height: 569px;
+  //   zoom: .8;
+  // }
+}

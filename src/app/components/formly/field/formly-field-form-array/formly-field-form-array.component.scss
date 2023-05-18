@@ -1,0 +1,16 @@
+.single-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+
+.form--add--box {
+  width: 350px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}

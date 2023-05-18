@@ -1,0 +1,125 @@
+<div class="row mb-3">
+  <ng-container
+    *ngFor="let step of getFieldGroup(); let index = index; let last = last"
+  >
+    <div class="col p-0">
+      <!-- <div
+        class="text-center"
+        [innerHTML]="transform(step.templateOptions?.['htmlIcon'])"
+      ></div> -->
+      <div class="w-100 text-left pb-0 mb-2" style="align-items: center">
+        <div class="w-100 d-flex justify-content-center mb-3 position-relative">
+          <div
+            *ngIf="index != 0"
+            class="h-50 w-50 position-absolute"
+            style="left: 0; border-bottom: 1px dashed #e4e6ef; z-index: 1"
+          ></div>
+          <div
+            *ngIf="!last"
+            class="h-50 w-50 position-absolute"
+            style="right: 0; border-bottom: 1px dashed #e4e6ef; z-index: 1"
+          ></div>
+
+          <div
+            class="me-3"
+            style="
+              width: 40px;
+              height: 40px;
+              border-radius: 9px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              z-index: 2;
+            "
+            [ngClass]="
+              index != currentIndex ? 'bg-light-primary' : 'bg-primary'
+            "
+          >
+            <h5
+              class="m-0"
+              *ngIf="index >= currentIndex"
+              [ngClass]="index > currentIndex ? 'text-primary' : 'text-white'"
+            >
+              {{ index + 1 }}
+            </h5>
+            <i
+              class="fa fa-check text-primary"
+              style="font-size: 16px"
+              *ngIf="index < currentIndex"
+            ></i>
+          </div>
+        </div>
+        <h5
+          class="m-0 text-center"
+          [ngClass]="index <= currentIndex ? '' : 'text-muted'"
+        >
+          {{ step.templateOptions?.label }}
+        </h5>
+      </div>
+      <!-- <div
+        [style.width]="index <= currentIndex ? '90%' : '0px'"
+        class="border-0 bg-primary step-progress m-auto"
+        style="height: 2px"
+      ></div> -->
+    </div>
+  </ng-container>
+</div>
+
+<div>
+  <swiper
+    #swiper
+    [allowTouchMove]="false"
+    (transitionStart)="transitionStart()"
+    (transitionEnd)="transitionEnd()"
+    style="min-height: 350px"
+    [style.overflow]="hidden ? 'hidden' : 'visible'"
+  >
+    <ng-template
+      swiperSlide
+      *ngFor="let step of getFieldGroup(); let index = index; let last = last"
+    >
+      <div
+        class="p-3"
+        [style.visibility]="(currentIndex == index) ? 'visible' : 'hidden'"
+      >
+        <formly-field [field]="step"></formly-field>
+      </div>
+    </ng-template>
+  </swiper>
+  <div *ngIf="getFieldGroup()" class="d-flex justify-content-space-between">
+    <div>
+      <div *ngIf="getFieldGroup().length > 1">
+        <button
+          class="btn btn-light-primary me-5"
+          type="button"
+          [disabled]="currentIndex == 0"
+          *ngIf="currentIndex != 0"
+          (click)="back()"
+        >
+          <i class="fa fa-chevron-left me-2" aria-hidden="true"></i>
+          Back
+        </button>
+      </div>
+    </div>
+    <button
+      class="btn btn-primary"
+      type="button"
+      [disabled]="
+        !isValid(getFieldGroup()[currentIndex]) ||
+        currentIndex == getFieldGroup().length - 1
+      "
+      *ngIf="currentIndex != getFieldGroup().length - 1"
+      (click)="next()"
+    >
+      Next <i class="fa fa-chevron-right ms-2" aria-hidden="true"></i>
+    </button>
+    <button
+      *ngIf="currentIndex == getFieldGroup().length - 1"
+      class="btn btn-primary"
+      [disabled]="!form.valid"
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+</div>

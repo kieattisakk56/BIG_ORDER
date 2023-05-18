@@ -1,0 +1,66 @@
+<div class="form-group">
+  <div class="row">
+    <div *ngIf="!to['noLabel']" class="col-form-label fw-semibold" [ngClass]="to['required'] ? 'required' : ''"
+      [class]="to['labelContainerClass']" [innerHTML]="to['label'] || '&nbsp;'"></div>
+    <div [class]="to['inputContainerClass']">
+      <!-- <div
+        class="input-group input-group-solid input-group-lg"
+        *ngIf="!loading.isLoading || loading.request?.method != 'GET'"
+      >
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+        </div>
+        <input
+          autocomplete="off"
+          type="text"
+          [name]="to['name']"
+          [placeholder]="to['placeholder']"
+          class="form-control form-control-solid"
+          [formControl]="formControl"
+          [formlyAttributes]="field"
+          [bsConfig]="{
+            dateInputFormat: 'DD/MM/YYYY',
+            containerClass: 'theme-default'
+          }"
+          bsDatepicker
+        />
+      </div> -->
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text h-100" style="
+              border-radius: 0.625rem;
+              border-top-right-radius: 0;
+              border-bottom-right-radius: 0;
+            ">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+          </span>
+        </div>
+        <input autocomplete="off" type="text" [name]="to['name']" [placeholder]="to['placeholder']"
+          class="form-control form-control-solid" [formControl]="formControl" [formlyAttributes]="field"
+          [bsConfig]="config" bsDatepicker />
+      </div>
+
+      <!-- <input
+        class="form-control"
+        type="text"
+        mwlFlatpickr
+        [(ngModel)]="modelValueAsDate"
+        [altInput]="true"
+        [convertModelValue]="true"
+      /> -->
+      <ngx-skeleton-loader *ngIf="
+          loading.isLoading &&
+          loading.isShowLoading &&
+          loading.request?.method == 'GET'
+        " count="1" appearance="line" class="formControl" [theme]="{ height: '33px' }"></ngx-skeleton-loader>
+      <div>
+        <div class="form-text" [ngClass]="to['helperText'] ? 'd-block' : ''">
+          {{ to["helperText"] }}
+        </div>
+        <div class="invalid-feedback" [ngClass]="showError ? 'd-block' : ''">
+          <formly-validation-message [field]="field"></formly-validation-message>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

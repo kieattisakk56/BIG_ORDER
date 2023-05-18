@@ -1,0 +1,102 @@
+<!-- <div class="modal-header">
+  <h5 class="modal-title">Crop image</h5>
+  <button type="button" class="btn-close" (click)="close()"></button>
+</div> -->
+<div class="modal-body">
+  <div class="mb-3" style="background: #00000012">
+    <image-cropper
+      [imageFile]="item.file"
+      [aspectRatio]="ratio"
+      [imageBase64]="item.image64"
+      [containWithinAspectRatio]="false"
+      [imageURL]="item.imageUrl"
+      [maintainAspectRatio]="maintainAspectRatio"
+      [cropperMinWidth]="cropperMinWidth"
+      [cropperMinHeight]="cropperMinHeight"
+      [cropperMaxWidth]="cropperMaxWidth"
+      [cropperMaxHeight]="cropperMaxHeight"
+      [alignImage]="'center'"
+      [transform]="transform"
+      [allowMoveImage]="true"
+      [imageQuality]="100"
+      format="png"
+      (imageCropped)="imageCropped($event)"
+      style="max-height: 500px;min-height: 500px"
+      class="w-100"
+    ></image-cropper>
+  </div>
+  <!-- <div class="row">
+    <div class="col-6 text-end">
+      <p>Width : {{ width }} px</p>
+    </div>
+    <div class="col-6">
+      <p>Height : {{ height }} px</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 text-end">
+      <p *ngIf="cropperMinWidth > 0">Min Width : {{ cropperMinWidth }} px</p>
+    </div>
+    <div class="col-6">
+      <p *ngIf="cropperMinHeight > 0">Min Height : {{ cropperMinHeight }} px</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 text-end">
+      <p *ngIf="cropperMaxWidth > 0">Max Width : {{ cropperMaxWidth }} px</p>
+    </div>
+    <div class="col-6">
+      <p *ngIf="cropperMaxHeight > 0">Max Height : {{ cropperMaxHeight }} px</p>
+    </div>
+  </div> -->
+  <div class="d-flex justify-content-center" style="align-items: center">
+    <label class="d-flex m-2" style="align-items: center">
+      <p class="m-2">Scale</p>
+      <input
+        title="Scale"
+        type="range"
+        class="form-range"
+        [ngModel]="scale"
+        (ngModelChange)="scaleChange($event)"
+        style="width: 250px"
+        min="1"
+        max="5"
+        step=".1"
+      />
+    </label>
+    <button
+      title="flip horizontal"
+      class="border-0 m-2"
+      (click)="flipHorizontal()"
+      style="background: none"
+    >
+      <img src="./assets/images/horizontalFlip.png" width="22" />
+    </button>
+    <button
+      title="flip vertical"
+      class="border-0 m-2"
+      (click)="flipVertical()"
+      style="background: none"
+    >
+      <img src="./assets/images/verticalFlip.png" width="22" />
+    </button>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-light"
+    data-bs-dismiss="modal"
+    (click)="close()"
+  >
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-bs-dismiss="modal"
+    (click)="save()"
+  >
+    Crop
+  </button>
+</div>

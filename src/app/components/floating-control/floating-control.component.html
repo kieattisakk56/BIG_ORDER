@@ -1,0 +1,22 @@
+<div class="floating-control" [ngClass]="show ? 'show' : ''">
+  <div class="d-flex">
+    <button
+      class="floating-button"
+      type="button"
+      title="Configurations"
+      (mouseenter)="collapse(true)"
+      (mouseleave)="collapse(false)"
+    >
+      <i class="fa fa-gear"></i>
+    </button>
+    <div
+      class="content"
+      (mouseenter)="collapse(true)"
+      (mouseleave)="collapse(false)"
+    >
+      <div class="p-4">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

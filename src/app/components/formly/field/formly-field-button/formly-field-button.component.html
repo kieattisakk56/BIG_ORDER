@@ -1,0 +1,25 @@
+<div class="form-group">
+  <div class="row">
+    <div
+      *ngIf="!to['noLabel']"
+      class="col-form-label fw-semibold"
+      [ngClass]="to['required'] ? 'required' : ''"
+      [class]="to['labelContainerClass']"
+      [innerHTML]="to['label'] || '&nbsp;'"
+    ></div>
+    <div [class]="to['inputContainerClass']">
+      <button
+        class="btn"
+        [type]="to['type'] || 'button'"
+        [ngClass]="to['class']"
+        (click)="click()"
+        [innerHTML]="to['text']"
+      ></button>
+      <div>
+        <div class="form-text" [ngClass]="to['helperText'] ? 'd-block' : ''">
+          {{ to["helperText"] }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

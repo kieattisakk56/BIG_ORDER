@@ -1,0 +1,16 @@
+<div
+  class="overflow-hidden rounded w-100px h-100px d-flex justify-content-center"
+  [class]="class"
+  [style.width.px]="width"
+  [style.height.px]="height"
+>
+  <img
+    [appPreviewImage]="id"
+    [src]="getSafeUrl(src || 'assets/images/placeholder.jpg')"
+    [attr.origin]="src || 'assets/images/placeholder.jpg'"
+    [attr.type]="'image'"
+    [attr.path]="src || 'assets/images/placeholder.jpg'"
+    loading="lazy"
+   onerror="this.src = defualtImage ?? 'assets/images/placeholder.jpg'"
+  />
+</div>

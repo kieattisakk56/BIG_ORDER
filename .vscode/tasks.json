@@ -1,0 +1,85 @@
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?LinkId=733558
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "start",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "typescript",
+        "pattern": "$tsc",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": {
+            "regexp": "(.*?)"
+          },
+          "endsPattern": {
+            "regexp": "bundle generation complete"
+          }
+        }
+      }
+    },
+    {
+      "type": "npm",
+      "script": "test",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "typescript",
+        "pattern": "$tsc",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": {
+            "regexp": "(.*?)"
+          },
+          "endsPattern": {
+            "regexp": "bundle generation complete"
+          }
+        }
+      }
+    },
+    {
+      "label": "add action",
+      "type": "shell",
+      "command": "ng g action core/states/${input:param1}/${input:param1} --interactive=false "
+    },
+    {
+      "label": "add reducer",
+      "type": "shell",
+      "command": "ng g reducer core/states/${input:param1}/${input:param1} --skip-tests=true --interactive=false --module=core/states/states.module.ts"
+    },
+    {
+      "label": "add selector",
+      "type": "shell",
+      "command": "ng g selector core/states/${input:param1}/${input:param1} --skip-tests=true --interactive=false"
+    },
+    {
+      "label": "add effect",
+      "type": "shell",
+      "command": "ng g effect core/states/${input:param1}/${input:param1}  --skip-tests=true --interactive=false  --module=core/states/states.module.ts"
+    },
+    {
+      "label": "add state",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "add effect",
+        "add action",
+        "add reducer",
+        "add selector"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "param1",
+      "description": "State name:",
+      "default": "",
+      "type": "promptString"
+    }
+  ]
+}

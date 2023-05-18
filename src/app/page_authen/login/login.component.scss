@@ -1,0 +1,200 @@
+.css-1ujqpe8 {
+  width: 50px;
+}
+
+.carousel-login {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 0;
+}
+
+::ng-deep .carousel-control {
+  display: none;
+}
+
+.login-page {
+  height: 100vh;
+  display: flex;
+  position: relative;
+  background-image: url('~src/assets/images/screen/bg.png');
+  background-size: cover;
+  background-position: center;
+  font-size: 14px;
+
+  .right {
+    display: grid;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    position: relative;
+    align-items: center;
+    // background: #343434;
+    // box-shadow: 0px 0px 50px 0px rgb(82 63 105 / 15%) !important;
+    text-align: right;
+
+    top: -4.1%;
+
+    .css-1pp96uu {
+      position: relative;
+      -webkit-box-align: baseline;
+      align-items: baseline;
+      border-width: 0px;
+      border-radius: 3px;
+      box-sizing: border-box;
+      display: inline-flex;
+      height: 38px;
+      font-style: normal;
+      font-family: inherit;
+      max-width: 100%;
+
+      text-align: center;
+      text-decoration: none;
+      transition: background 0.1s ease-out 0s,
+        box-shadow 0.15s cubic-bezier(0.47, 0.03, 0.49, 1.38) 0s;
+      white-space: nowrap;
+      cursor: pointer;
+      padding: 0px 10px;
+      vertical-align: middle;
+      width: 100%;
+      -webkit-box-pack: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--ds-text, #42526e) !important;
+
+      line-height: 40px !important;
+      background: rgb(255, 255, 255) !important;
+      box-shadow: rgb(0 0 0 / 20%) 1px 1px 5px 0px !important;
+      display: flex;
+      align-items: center;
+
+      @media screen and (max-width: 600px) {
+        width: 100% !important;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      top: -2.5%;
+    }
+  }
+
+  // .left {
+  //   width: 70%;
+  //   // background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+  //   //   url("../../../assets/images/login-cover.jpg");
+  //   background-size: cover;
+
+  //   @media screen and (max-width: 1024px) {
+  //     width: 0% !important;
+  //   }
+  // }
+
+  .login-panel {
+    position: absolute;
+    width: 240px;
+    min-width: 450px;
+    height: 80vh;
+    right: 14%;
+    top: 10%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 70px #00000059;
+
+    @media screen and (max-width: 600px) {
+      top: 10%;
+      right: 6%;
+      margin: auto;
+      width: 90%;
+      min-width: 83%;
+      height: 80%;
+    }
+  }
+
+  .backdroup-login {
+    mix-blend-mode: lighten;
+    background-color: white;
+    -webkit-backdrop-filter: blur(33px);
+    backdrop-filter: blur(33px);
+    background-color: #ffffff80;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+}
+
+.error {
+  color: red;
+}
+
+.microsoft-auth-button {
+  width: 100% !important;
+}
+
+#kt_sign_in_submit {
+  background-color: #FF9300;
+}
+
+#kt_sign_in_submit:hover {
+  background-color: #dd8304 !important;
+}
+
+#kt_sign_in_submit:focus {
+  background-color: #dd8304 !important;
+}
+
+.indicator-progress {
+  display: inline;
+}
+
+.or-line {
+  display: flex;
+
+  span {
+    width: 70%;
+    border-top: solid 2px #fff;
+    transform: translateY(50%);
+  }
+}
+
+.submit-form {
+  display: flex;
+  justify-content: space-between;
+
+  .btn {
+    font-size: 14px;
+
+  }
+
+  .btn-forgot {
+    background-color: transparent;
+    border: transparent;
+  }
+}
+
+.input-group {
+  background: black;
+  display: flex;
+  align-items: center;
+  border-radius: 7px;
+  color: white;
+  height: 40px;
+  input {
+    background-color: transparent;
+    border: transparent;
+    color: white;
+    font-size: 14px;
+  }
+  .input-group-text{
+    background-color: transparent;
+    border: transparent;
+    color: white;
+  }
+}
+.version{
+  position: fixed;
+  margin: auto;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(- 50%);
+  color: white;
+}

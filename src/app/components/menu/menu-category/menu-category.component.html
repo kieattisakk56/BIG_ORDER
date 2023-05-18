@@ -1,0 +1,9 @@
+<div *ngFor="let item of menu">
+  <div class="warper--category px-3 ">
+    <div class="py-2">
+      <label>{{item.category_name}} </label>
+    </div>
+  </div>
+  <app-menu-item [menu]="menu" *ngFor="let menu of item.menus">
+  </app-menu-item>
+</div>

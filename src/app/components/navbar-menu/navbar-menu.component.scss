@@ -1,0 +1,20 @@
+ul {
+  list-style-type: none;
+}
+
+.icon-menu {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.active {
+  background: linear-gradient(268deg, rgb(2, 0, 36) 0%, rgb(75 75 75) 0%, rgba(102, 99, 99, 0.14) 100%);
+}
+
+.menuOpen {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+div.menu-container {
+  transition: 0.2s ease-in !important;
+}

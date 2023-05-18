@@ -1,0 +1,108 @@
+<div class="form-group h-100">
+  <div class="row h-100">
+    <div class="col-form-label fw-semibold" [ngClass]="prop.required || to.required ? 'required' : ''"
+      [class]="prop.labelContainerClass" *ngIf="!to['noLabel']" [innerHTML]="to['label'] || '&nbsp;'"></div>
+    <div [class]="prop.inputContainerClass">
+      <input type="file" [class]="'form-control form-control-solid d-none ' + to['class']" [formlyAttributes]="field"
+        [accept]="to['accept'] || '*'" (change)="change($event)" #input [name]="uid" [id]="uid" [(ngModel)]="value" />
+
+      <div [ngClass]="prop.previewTemplate.wrapperClass" [style.width]="prop.preview && getPreviewWrapperSize().width"
+        [style.height]="prop.preview && getPreviewWrapperSize().height">
+
+        <div *ngIf="preview" class="image-preview-thumpnail d-inline-block rounded" [style.background-image]="
+            prop.preview ? 'url(' + preview.src + ')' : '' " [ngClass]="prop.previewTemplate.previewClass"
+          [style.width]="getPreviewSize().width" [style.height]="getPreviewSize().height">
+
+
+          <label *ngIf="!prop.preview" [class]="
+              prop.placeholder.class +
+              ' image-preview-thumpnail image-preview-placeholder d-inline-block rounded m-0 w-100 h-100'
+            " [for]="uid" [ngClass]="prop.previewTemplate.previewClass">
+            <div class="plus-icon d-grid" [style]="prop.placeholder.iconStyle">
+              <div *ngIf="preview">
+                <i [class]="'fa fa-upload'" style="font-size: 24px !important;"></i>
+
+              </div>
+              <div *ngIf="!preview">
+                <i [class]="prop.placeholder.icon"></i>
+                <p class="mb-0"> {{ prop.placeholder.text }}
+                </p>
+              </div>
+            </div>
+          </label>
+
+          <ng-container *ngIf="prop.preview">
+            <img *ngIf="preview.src && prop.previewFullScreen" [title]="preview.name || ''" [appPreviewImage]="uid"
+              [alt]="preview.name || ''" [src]="getSafeUrl(preview.src)" [attr.origin]="preview.origin || preview.src"
+              [attr.type]="preview.type || 'image'" [attr.path]="preview.path" loading="lazy" [id]="uid + 'image'" />
+            <img *ngIf="preview.src && !prop.previewFullScreen" [title]="preview.name || ''" [alt]="preview.name || ''"
+              [src]="getSafeUrl(preview.src)" loading="lazy" [id]="uid + 'image'" />
+          </ng-container>
+
+          <div class="image-preview-action rounded" *ngIf="preview.src">
+            <div title="{{preview?.name}}" (click)="imageClick()"></div>
+            <label
+              class="btn-image-preview-action btn btn-icon btn-circle btn-active-color-primary bg-body shadow position-absolute p-0"
+              style="top: -13px; right: -13px" [for]="uid" *ngIf="!prop.disabled">
+              <i class="fa fa-pencil"></i>
+            </label>
+            <label
+              class="btn-image-preview-action btn btn-icon btn-circle btn-active-color-primary bg-body shadow position-absolute p-0"
+              style="top: 18px; right: -13px" [for]="uid" *ngIf="!prop.disabled" (click)="download()">
+              <i class="fa fa-download"></i>
+            </label>
+            <label
+              class="btn-image-preview-action btn btn-icon btn-circle btn-active-color-primary bg-body shadow position-absolute  p-0"
+              style="bottom: 26px; right: -13px" *ngIf="prop.deleteFlag && !prop.disabled" (click)="remove()">
+              <i class="fa fa-close"></i>
+            </label>
+
+          </div>
+          <!-- <ngx-skeleton-loader *ngIf="!preview.src" count="1" appearance="circle" [theme]="{
+              'border-radius': '8px',
+              width: '100px',
+              height: '100px'
+            }"></ngx-skeleton-loader> -->
+
+
+        </div>
+
+        <label [class]="
+            prop.placeholder.class +
+            ' image-preview-thumpnail image-preview-placeholder d-inline-block rounded'
+          " [for]="uid" [ngClass]="prop.previewTemplate.previewClass" *ngIf="!preview"
+          [style.width]="getPreviewSize().width" [style.height]="getPreviewSize().height" style="font-size: 8px;">
+          <div class="plus-icon d-grid w-100" [style]="prop.placeholder.iconStyle">
+
+
+            <div *ngIf="!preview">
+              <i [class]="prop.placeholder.icon" style="font-size: 24px !important;"></i>
+              <div class="m-0" style="font-size: 10px !important;"> {{ prop.placeholder.text }}
+              </div>
+
+            </div>
+          </div>
+          <div *ngIf="preview">
+            <span class="text-overflow">
+              {{ preview.name}} ( {{ preview.file_size}})
+            </span>
+
+
+          </div>
+        </label>
+        <div *ngIf="showError">
+          <div class="form-text" [ngClass]="to['helperText'] ? 'd-block' : ''">
+            {{ to["helperText"] }}
+          </div>
+          <div class="invalid-feedback" [ngClass]="showError ? 'd-block' : ''">
+            <formly-validation-message [field]="field"></formly-validation-message>
+          </div>
+        </div>
+      </div>
+      <small *ngIf="preview && preview.name && preview.file_size &&to['type']=='file'" class="font-bold"
+        style="margin: 5px;">
+        {{ preview.name}} ( {{ preview.file_size}})
+      </small>
+    </div>
+  </div>
+</div>

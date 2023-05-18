@@ -1,0 +1,16 @@
+<div class="accordion-wrapper" [class]="class">
+  <accordion [isAnimated]="true">
+    <accordion-group [isOpen]="isOpen">
+      <div
+        class="d-flex align-items-center justify-content-space-between"
+        accordion-heading
+      >
+        <p class="card-title m-0 fw-bold">{{ title }}</p>
+        <i class="fa fa-angle-down arrow-icon" aria-hidden="true"></i>
+      </div>
+      <div class="p-3">
+        <ng-content></ng-content>
+      </div>
+    </accordion-group>
+  </accordion>
+</div>

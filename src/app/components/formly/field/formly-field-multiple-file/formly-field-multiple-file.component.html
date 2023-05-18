@@ -1,0 +1,103 @@
+<div class="form-group h-100">
+  <div class="row h-100">
+    <div
+      class="col-form-label fw-semibold"
+      [ngClass]="prop.required || to.required ? 'required' : ''"
+      [class]="to['labelContainerClass']"
+      *ngIf="!to['noLabel']"
+      [innerHTML]="to['label'] || '&nbsp;'"
+    ></div>
+    <div [class]="to['inputContainerClass']">
+      <input
+        type="file"
+        [class]="'form-control form-control-solid d-none ' + to['class']"
+        [formlyAttributes]="field"
+        multiple="true"
+        [accept]="to['accept'] || '*'"
+        (change)="change($event)"
+        [name]="uid"
+        [id]="uid"
+        [(ngModel)]="value"
+      />
+      <div
+        class="d-flex pb-3"
+        [ngClass]="prop.previewTemplate.wrapperClass"
+        [style.width]="getPreviewWrapperSize().width"
+        [style.height]="getPreviewWrapperSize().height"
+        [style.maxHeight]="(this.prop.previewTemplate.wrapperH || 500) + 'px'"
+        style="flex-flow: wrap; max-height: 500px; overflow: auto"
+      >
+        <ng-container *ngFor="let item of previews; let i = index">
+          <div
+            class="image-preview-thumpnail d-inline-block rounded me-4"
+            [style.background-image]="'url(' + item.src + ')'"
+            [ngClass]="prop.previewTemplate.previewClass"
+            [style.width]="getPreviewSize().width"
+            [style.height]="getPreviewSize().height"
+          >
+            <img
+              *ngIf="item.src && prop.previewFullScreen"
+              [title]="item.name || ''"
+              [appPreviewImage]="uid"
+              [alt]="item.name || ''"
+              [src]="getSafeUrl(item.src)"
+              [attr.origin]="item.origin || item.src"
+              [attr.type]="item.type || 'image'"
+              [attr.path]="item.path"
+              loading="lazy"
+              [id]="uid + i"
+            />
+            <img
+              *ngIf="item.src && !prop.previewFullScreen"
+              [title]="item.name || ''"
+              [alt]="item.name || ''"
+              [src]="getSafeUrl(item.src)"
+              loading="lazy"
+              [id]="uid + i"
+            />
+            <div class="image-preview-action rounded" *ngIf="item.src">
+              <div class="w-100 h-100" (click)="imageClick(i)"></div>
+              <label
+                class="btn-image-preview-action btn btn-icon btn-circle btn-active-color-primary bg-body shadow position-absolute"
+                style="bottom: -13px; right: -13px"
+                *ngIf="prop.deleteFlag && !prop.disabled"
+                (click)="remove(i)"
+              >
+                <i class="fa fa-close"></i>
+              </label>
+            </div>
+            <ngx-skeleton-loader
+              *ngIf="!item.src"
+              count="1"
+              appearance="circle"
+              [theme]="{
+                'border-radius': '8px',
+                width: '100px',
+                height: '100px'
+              }"
+            ></ngx-skeleton-loader>
+          </div>
+        </ng-container>
+        <label
+          class="image-preview-thumpnail image-preview-placeholder d-inline-block rounded"
+          [for]="uid"
+          [ngClass]="prop.previewTemplate.previewClass"
+          [style.width]="getPreviewSize().width"
+          [style.height]="getPreviewSize().height"
+        >
+          <i class="fa fa-plus"></i>
+        </label>
+      </div>
+      <div>
+        <div class="form-text" [ngClass]="to['helperText'] ? 'd-block' : ''">
+          {{ to["helperText"] }}
+        </div>
+        <div class="invalid-feedback" [ngClass]="showError ? 'd-block' : ''">
+          <formly-validation-message
+            [field]="field"
+          ></formly-validation-message>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
